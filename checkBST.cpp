@@ -112,6 +112,26 @@ bool isEqual(Node *r1,Node *r2) {
 	}
 	return false;
  }
+bool isPath(Node *root, int sum) {
+	if ( root == NULL ) 
+		return sum == 0;
+	int subsum = sum - root->data;
+	if( subsum == 0 && !root->right && !root->left) {
+		return true;
+	}
+	bool r,l;
+	if(root->right) {
+		r = isPath(root->right, subsum);
+	}
+	if(root->left) {
+		l = isPath(root->left,subsum);
+	}
+	return l || r;
+}
+
+int shortestSum(Node *root) {
+	
+}
 
 main() {
 	Node * r1,*r2,*r3;
@@ -129,12 +149,12 @@ main() {
 	r2->left->left = new Node(8);
 	r2->left->right = new Node(4);
 	r2->right->left = new Node(6);
-	r2->right->right = new Node(0);
+	r2->right->right = new Node(1);
 	r2->right->right->right = new Node(10);
 	std::cout<<isSimilar(r1,r2)<<std::endl;
 	std::cout<<isEqual(r1,r2)<<std::endl;
 	r3 = new Node(4);
 	r3->right = new Node(45);
 	r3->left = new Node(45);
-	std::cout<<isMirrorImage(r3,r3)<<std::endl;
+	std::cout<<isPath(r2,17)<<std::endl;
 }
