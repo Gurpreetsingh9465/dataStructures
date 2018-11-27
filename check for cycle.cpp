@@ -1,7 +1,5 @@
 #include<iostream>
-#include<stdlib.h>
-#define INF 30000
-
+#include<list>
 class Node {
 	public:
 		char name;
@@ -57,7 +55,32 @@ class Graph {
 				}
 			}
 		}
-		
+		bool in(std::list<char> mylist,char n) {
+			if(!mylist.empty()) {
+				for (std::list<char>::iterator it=mylist.begin(); it != mylist.end(); ++it)
+	    			if(*it == n) 
+	    				return true;
+			}
+			return false;
+		}
+		bool isCycle() {
+			std::list<char> s;
+			std::list<char> visited;
+			s.push_back(array[0]->name);
+			while (!s.empty()) {
+				char u = s.back();
+				Node *temp =  array[getIndex(s.back())]->next;
+				s.pop_back();
+				while(temp!= NULL) {
+					if(in(visited,temp->name))
+						return true;
+					s.push_back(temp->name);
+					temp= temp->next;
+				}
+				visited.push_back(u);
+			}
+			return false;
+		}
 		friend std::ostream & operator << (std::ostream &,Graph*);
 };
 std::ostream & operator << (std::ostream &out,Graph *a) {
@@ -75,9 +98,10 @@ std::ostream & operator << (std::ostream &out,Graph *a) {
 main() {
 	char a[] = {'A','B','C','D','E'};
 	Graph *g = new Graph(a,5);
-	g->addEdge('A','B',45);
-	g->addEdge('D','E',72);
-	g->addEdge('A','C',4);
-	g->addEdge('A','D',5);
+	g->addEdge('A','B',1);
+	g->addEdge('A','C',1);
+	g->addEdge('B','D',1);
+	g->addEdge('C','E',1);
 	std::cout<<g;
+	std::cout<<g->isCycle();
 }
