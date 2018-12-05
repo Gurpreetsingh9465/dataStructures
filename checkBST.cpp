@@ -129,9 +129,6 @@ bool isPath(Node *root, int sum) {
 	return l || r;
 }
 
-int shortestSum(Node *root) {
-	
-}
 
 main() {
 	Node * r1,*r2,*r3;
