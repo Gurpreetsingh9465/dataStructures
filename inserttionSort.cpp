@@ -1,8 +1,7 @@
 #include <iostream>
-using namespace std;
 int main()
 {
-	int a[5] = {23,99,1,24,1};
+	vector<int> a = {23,99,1,24,1};
 	int temp,j;
 	
 	for(int i=1; i<=4; i++){
@@ -13,7 +12,7 @@ int main()
 	}
 	
 	for(int i=0; i<5; i++){
-		cout<<a[i]<<endl;
+		cout<<std::a[i]<<endl;
 	}
 }
 
