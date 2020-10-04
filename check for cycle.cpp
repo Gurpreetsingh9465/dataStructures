@@ -5,7 +5,6 @@ class Node {
 		char name;
 		Node *next;
 		int weight;
-	Node() { }
 	Node(char name, int weight = 0) {
 		this->name = name;
 		this->weight = weight;
